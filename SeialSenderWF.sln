@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33214.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeialSenderWF", "SeialSenderWF\SeialSenderWF.csproj", "{B61DF290-DDA5-4D1F-B299-9F780E9E2C80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B61DF290-DDA5-4D1F-B299-9F780E9E2C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61DF290-DDA5-4D1F-B299-9F780E9E2C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61DF290-DDA5-4D1F-B299-9F780E9E2C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61DF290-DDA5-4D1F-B299-9F780E9E2C80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB20689C-2432-4CF7-B351-71B76CF7B466}
+	EndGlobalSection
+EndGlobal
