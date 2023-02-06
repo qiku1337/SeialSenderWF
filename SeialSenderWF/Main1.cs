@@ -15,40 +15,56 @@ namespace SeialSenderWF
     public partial class Main1 : Form
     {
         static Thread readThread;
-        static bool _continue;
+        static bool _continue, _start, _boot;
         static SerialPort _serialPort;
 
         static System.Windows.Forms.Timer CheckTimer = new System.Windows.Forms.Timer();
         string message;
-        static String[] portname = {"COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9" };
-        static int[] baudspeed = {  9600, 14400, 19200, 38400, 57600, 115200, 256000 };
-        string msg = "";
+        static String[] portname = { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM25" };
+        static int[] baudspeed = { 9600, 14400, 19200, 38400, 57600, 115200, 256000 };
+        static public Task delay = Task.Delay(2000);
         public Main1()
         {
             InitializeComponent();
             port_combo.SelectedIndex = config.Default.port;
             speed_combo.SelectedIndex = config.Default.speed;
 
+            _start = false;
             _continue = false;
+            _boot = false;
             _serialPort = new SerialPort();
 
             CheckTimer.Tick += new EventHandler(Check);
 
-            CheckTimer.Interval = 500;
+            CheckTimer.Interval = 1000;
             CheckTimer.Start();
+
+
         }
         private void Check(Object myObject, EventArgs myEventArgs)
         {
-              if (string.Equals(message, "boot\r"))
-              {
+            Console.WriteLine(message);
+            if (_start)
+            {
+                if (!string.Equals(message, "AT+DH_BOOTING_STATE_RES:1\r") & !_boot)
+                {
+                    boot_cmd();
+                }
+                else
+                {
+                    _boot = true;
                     ok_label.ForeColor = Color.Green;
-                    ok_label.Text = "Booting ok";
-              }
-              else
-              {
-                    ok_label.ForeColor = Color.Red;
-                    ok_label.Text = "NG";
-              }
+                    ok_label.Text = "Boot ok, writing PN";
+                    writepn_cmd();
+                    string pn = pn_box.Text + "\r";
+                    readpn_cmd();
+                    if (string.Equals(message.Substring(23), pn))
+                    {
+                        ok_label.Text = "Write OK";
+                        _start = false;
+                    }
+                }
+            }
         }
         private void Read()
         {
@@ -57,45 +73,59 @@ namespace SeialSenderWF
                 try
                 {
                     message = _serialPort.ReadLine();
-                    WriteLog(">>"+message);
+                    WriteLog(">>" + message);
                     Console.WriteLine(message);
                 }
-                catch (TimeoutException) 
+                catch (TimeoutException)
                 {
                     //Console.WriteLine(message + ";");
                 }
-            }            
+            }
         }
         public void WriteLog(string text)
         {
             if (log_textbox.InvokeRequired)
             {
-                    Action safeWrite = delegate { WriteLog($"{text}"); };
-                    log_textbox.Invoke(safeWrite);
+                Action safeWrite = delegate { WriteLog($"{text}"); };
+                log_textbox.Invoke(safeWrite);
             }
             else
-                {
-                    log_textbox.AppendText(text);
-                }
+            {
+                log_textbox.AppendText(text);
+            }
         }
         private void send_button_Click(object sender, EventArgs e)
         {
-            _serialPort.Write("boot\n");
+            boot_cmd();
+        }
+        private void boot_cmd()
+        {
+            _serialPort.Write("AT+\r\n");
+            delay.Wait();
+            _serialPort.Write("AT+\r\n");
             log_textbox.AppendText("<<boot\n");
         }
         private void write_button_Click(object sender, EventArgs e)
         {
-            _serialPort.Write("222\n");
-            log_textbox.AppendText("<<222\n");
+            _serialPort.Write("AT+\r\n");
+        }
+        private void writepn_cmd()
+        {
+            _serialPort.Write("AT+:" + pn_box.Text + "\r\n");
+            delay.Wait();
+            //log_textbox.AppendText("<<P/N writing " + pn_box.Text + "\n");
+        }
+        private void readpn_cmd()
+        {
+            _serialPort.Write("AT+\r\n");
+            delay.Wait();
         }
 
         private void check_button_Click(object sender, EventArgs e)
         {
-            if (string.Equals(message, "boot\r"))
-            {
-                ok_label.ForeColor = Color.Green;
-                ok_label.Text = "OK";
-            }
+            _start = true;
+            _boot = false;
+            ok_label.Text = "Starting";
         }
 
         private void connect_button_Click(object sender, EventArgs e)
@@ -109,7 +139,7 @@ namespace SeialSenderWF
             config.Default.Save();
         }
         private void connect()
-        {                      
+        {
             try
             {
                 readThread = new Thread(Read);
@@ -131,6 +161,7 @@ namespace SeialSenderWF
 
                 readThread.Start();
                 _continue = true;
+
                 //readThread.Join();
             }
             catch (Exception exc)
@@ -147,10 +178,11 @@ namespace SeialSenderWF
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Environment.Exit(1);
             _continue = false;
-            readThread.Join();
+            //readThread.Join();
             readThread.Abort();
-            _serialPort.Close();            
+            _serialPort.Close();
         }
     }
 }

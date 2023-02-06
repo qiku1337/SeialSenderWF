@@ -42,6 +42,7 @@ namespace SeialSenderWF
             this.write_button = new System.Windows.Forms.Button();
             this.check_button = new System.Windows.Forms.Button();
             this.ok_label = new System.Windows.Forms.Label();
+            this.pn_box = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // port_combo
@@ -57,26 +58,29 @@ namespace SeialSenderWF
             "COM7",
             "COM8",
             "COM9"});
-            this.port_combo.Location = new System.Drawing.Point(338, 31);
+            this.port_combo.Location = new System.Drawing.Point(451, 38);
+            this.port_combo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.port_combo.Name = "port_combo";
-            this.port_combo.Size = new System.Drawing.Size(69, 21);
+            this.port_combo.Size = new System.Drawing.Size(91, 24);
             this.port_combo.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(294, 34);
+            this.label1.Location = new System.Drawing.Point(392, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.Size = new System.Drawing.Size(38, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Port:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(294, 61);
+            this.label2.Location = new System.Drawing.Point(392, 75);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Speed:";
             // 
@@ -91,16 +95,18 @@ namespace SeialSenderWF
             "57600",
             "115200",
             "256000"});
-            this.speed_combo.Location = new System.Drawing.Point(338, 58);
+            this.speed_combo.Location = new System.Drawing.Point(451, 71);
+            this.speed_combo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.speed_combo.Name = "speed_combo";
-            this.speed_combo.Size = new System.Drawing.Size(69, 21);
+            this.speed_combo.Size = new System.Drawing.Size(91, 24);
             this.speed_combo.TabIndex = 3;
             // 
             // connect_button
             // 
-            this.connect_button.Location = new System.Drawing.Point(297, 116);
+            this.connect_button.Location = new System.Drawing.Point(396, 143);
+            this.connect_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connect_button.Name = "connect_button";
-            this.connect_button.Size = new System.Drawing.Size(110, 25);
+            this.connect_button.Size = new System.Drawing.Size(147, 31);
             this.connect_button.TabIndex = 4;
             this.connect_button.Text = "Connect";
             this.connect_button.UseVisualStyleBackColor = true;
@@ -109,10 +115,11 @@ namespace SeialSenderWF
             // log_textbox
             // 
             this.log_textbox.HideSelection = false;
-            this.log_textbox.Location = new System.Drawing.Point(12, 31);
+            this.log_textbox.Location = new System.Drawing.Point(16, 38);
+            this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.log_textbox.Size = new System.Drawing.Size(268, 169);
+            this.log_textbox.Size = new System.Drawing.Size(356, 207);
             this.log_textbox.TabIndex = 5;
             this.log_textbox.Text = "";
             // 
@@ -120,17 +127,19 @@ namespace SeialSenderWF
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(123, 9);
+            this.label3.Location = new System.Drawing.Point(164, 11);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 19);
+            this.label3.Size = new System.Drawing.Size(48, 24);
             this.label3.TabIndex = 6;
             this.label3.Text = "Log:";
             // 
             // send_button
             // 
-            this.send_button.Location = new System.Drawing.Point(315, 204);
+            this.send_button.Location = new System.Drawing.Point(420, 251);
+            this.send_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.send_button.Name = "send_button";
-            this.send_button.Size = new System.Drawing.Size(69, 36);
+            this.send_button.Size = new System.Drawing.Size(92, 44);
             this.send_button.TabIndex = 7;
             this.send_button.Text = "Boot";
             this.send_button.UseVisualStyleBackColor = true;
@@ -138,9 +147,10 @@ namespace SeialSenderWF
             // 
             // save_button
             // 
-            this.save_button.Location = new System.Drawing.Point(298, 85);
+            this.save_button.Location = new System.Drawing.Point(397, 105);
+            this.save_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.save_button.Name = "save_button";
-            this.save_button.Size = new System.Drawing.Size(109, 25);
+            this.save_button.Size = new System.Drawing.Size(145, 31);
             this.save_button.TabIndex = 8;
             this.save_button.Text = "Save settings";
             this.save_button.UseVisualStyleBackColor = true;
@@ -148,9 +158,10 @@ namespace SeialSenderWF
             // 
             // button_disconnect
             // 
-            this.button_disconnect.Location = new System.Drawing.Point(297, 147);
+            this.button_disconnect.Location = new System.Drawing.Point(396, 181);
+            this.button_disconnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_disconnect.Name = "button_disconnect";
-            this.button_disconnect.Size = new System.Drawing.Size(109, 25);
+            this.button_disconnect.Size = new System.Drawing.Size(145, 31);
             this.button_disconnect.TabIndex = 9;
             this.button_disconnect.Text = "Disconnect";
             this.button_disconnect.UseVisualStyleBackColor = true;
@@ -158,9 +169,10 @@ namespace SeialSenderWF
             // 
             // write_button
             // 
-            this.write_button.Location = new System.Drawing.Point(315, 246);
+            this.write_button.Location = new System.Drawing.Point(420, 303);
+            this.write_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.write_button.Name = "write_button";
-            this.write_button.Size = new System.Drawing.Size(69, 36);
+            this.write_button.Size = new System.Drawing.Size(92, 44);
             this.write_button.TabIndex = 10;
             this.write_button.Text = "Write PN";
             this.write_button.UseVisualStyleBackColor = true;
@@ -168,9 +180,10 @@ namespace SeialSenderWF
             // 
             // check_button
             // 
-            this.check_button.Location = new System.Drawing.Point(315, 288);
+            this.check_button.Location = new System.Drawing.Point(420, 354);
+            this.check_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.check_button.Name = "check_button";
-            this.check_button.Size = new System.Drawing.Size(69, 41);
+            this.check_button.Size = new System.Drawing.Size(92, 50);
             this.check_button.TabIndex = 11;
             this.check_button.Text = "Check PN";
             this.check_button.UseVisualStyleBackColor = true;
@@ -181,17 +194,26 @@ namespace SeialSenderWF
             this.ok_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ok_label.AutoSize = true;
             this.ok_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ok_label.Location = new System.Drawing.Point(57, 246);
+            this.ok_label.Location = new System.Drawing.Point(76, 303);
+            this.ok_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ok_label.Name = "ok_label";
-            this.ok_label.Size = new System.Drawing.Size(71, 52);
+            this.ok_label.Size = new System.Drawing.Size(89, 63);
             this.ok_label.TabIndex = 12;
             this.ok_label.Text = "??";
             // 
+            // pn_box
+            // 
+            this.pn_box.Location = new System.Drawing.Point(395, 219);
+            this.pn_box.Name = "pn_box";
+            this.pn_box.Size = new System.Drawing.Size(144, 22);
+            this.pn_box.TabIndex = 13;
+            // 
             // Main1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 356);
+            this.ClientSize = new System.Drawing.Size(572, 438);
+            this.Controls.Add(this.pn_box);
             this.Controls.Add(this.ok_label);
             this.Controls.Add(this.check_button);
             this.Controls.Add(this.write_button);
@@ -205,6 +227,7 @@ namespace SeialSenderWF
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.port_combo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main1";
@@ -230,6 +253,7 @@ namespace SeialSenderWF
         private System.Windows.Forms.Button write_button;
         private System.Windows.Forms.Button check_button;
         private System.Windows.Forms.Label ok_label;
+        private System.Windows.Forms.TextBox pn_box;
     }
 }
 
